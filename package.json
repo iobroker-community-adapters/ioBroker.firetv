@@ -1,6 +1,6 @@
 {
   "name": "iobroker.firetv",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "ioBroker Fire-TV Adapter",
   "author": {
     "name": "soef",
@@ -15,7 +15,6 @@
       "name": "mcm1957",
       "email": "mcm57@gmx.at"
     }
-
   ],
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.firetv",
   "license": "MIT",

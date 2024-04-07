@@ -2,34 +2,6 @@
   "common": {
     "name": "firetv",
     "version": "2.0.2",
-    "title": "Fire TV",
-    "titleLang": {
-      "en": "Fire TV",
-      "de": "Fire TV",
-      "ru": "Пожарное ТВ",
-      "pt": "Fire TV",
-      "nl": "Fire TV",
-      "fr": "Fire TV",
-      "it": "Fire TV",
-      "es": "Fire TV",
-      "pl": "Fire TV",
-      "uk": "Пожежне телебачення",
-      "zh-cn": "消防电视"
-    },
-    "desc": {
-      "en": "control Amazon Fire TV",
-      "de": "steuert Amazon Fire TV",
-      "ru": "Amazon Fire TV",
-      "pt": "controlar Amazon Fire TV",
-      "nl": "Amazon Fire TV bedienen",
-      "fr": "contrôler Amazon Fire TV",
-      "it": "controlla Amazon Fire TV",
-      "es": "controlar Amazon Fire TV",
-      "pl": "sterować Amazon Fire TV",
-      "uk": "керуйте Amazon Fire TV",
-      "zh-cn": "控制亚马逊消防电视"
-    },
-    "platform": "Javascript/Node.js",
     "news": {
       "2.0.2": {
         "en": "A crash has been fixed (#56)",
@@ -123,35 +95,69 @@
         "zh-cn": "增强 CI 测试"
       }
     },
+    "titleLang": {
+      "en": "Fire TV",
+      "de": "Fire TV",
+      "ru": "Пожарное ТВ",
+      "pt": "Fire TV",
+      "nl": "Fire TV",
+      "fr": "Fire TV",
+      "it": "Fire TV",
+      "es": "Fire TV",
+      "pl": "Fire TV",
+      "uk": "Пожежне телебачення",
+      "zh-cn": "消防电视"
+    },
+    "desc": {
+      "en": "control Amazon Fire TV",
+      "de": "steuert Amazon Fire TV",
+      "ru": "Amazon Fire TV",
+      "pt": "controlar Amazon Fire TV",
+      "nl": "Amazon Fire TV bedienen",
+      "fr": "contrôler Amazon Fire TV",
+      "it": "controlla Amazon Fire TV",
+      "es": "controlar Amazon Fire TV",
+      "pl": "sterować Amazon Fire TV",
+      "uk": "керуйте Amazon Fire TV",
+      "zh-cn": "控制亚马逊消防电视"
+    },
+    "authors": [
+      "soef <soef@gmx.net>",
+      "mcm1957 <mcm57@gmx.at"
+    ],
     "keywords": [
       "firetv",
       "fire tv",
       "fire-tv",
       "amazon fire tv"
     ],
-    "mode": "daemon",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
+    "platform": "Javascript/Node.js",
     "icon": "firetv.png",
+    "enabled": true,
     "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/iobroker.firetv/master/admin/firetv.png",
     "readme": "https://github.com/iobroker-community-adapters/iobroker.firetv/blob/master/README.md",
     "loglevel": "info",
+    "tier": 2,
+    "mode": "daemon",
     "type": "multimedia",
-    "enabled": true,
+    "compact": false,
+    "connectionType": "local",
+    "dataSource": "poll",
     "messagebox": true,
-    "license": "MIT",
-    "authors": [
-      {
-        "name": "soef",
-        "email": "soef@gmx.net"
-      }
-    ],
     "dependencies": [
       {
-        "js-controller": ">= 3.0.0"
+        "js-controller": ">= 5.0.0"
       }
     ],
-    "tier": 2,
-    "dataSource": "poll",
-    "connectionType": "local"
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.13"
+      }
+    ]
   },
   "native": {
     "devices": []

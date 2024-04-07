@@ -52,6 +52,7 @@ Alternatively, you can use *adbLink*
 ## License
 The MIT License (MIT)
 
+Copyright (c) 2024 iobroker-community-adapters <iobroker-community-adapters@gmx.de>
 Copyright (c) 2016-2023 soef <soef@gmx.net> and Community developers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

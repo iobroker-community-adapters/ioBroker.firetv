@@ -31,10 +31,14 @@ Search on Google (Minimal ADB and Fastboot) for the latest download link.
 
 Alternatively, you can use *adbLink* 
 
+## Changelog
 <!-- 
     ### **WORK IN PROGRESS** 
 -->
-## Changelog
+### **WORK IN PROGRESS** 
+* (mcm1957) Adapter requires node.js 18 and js-controller >= 5 now
+* (mcm1957) Dependencies have been updated
+
 ### 2.0.2 (2023-09-09) 
 * (jonaskn) A crash has been fixed (#56)
 

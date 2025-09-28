@@ -1,0 +1,146 @@
+name: Check GitHub Copilot Template Version
+on:
+  schedule:
+    # Run every Sunday at 3:23 AM UTC (optimized timing to avoid GitHub peak hours)
+    - cron: '23 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      force_check:
+        description: 'Force template version check'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-template-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for existing template version check issues
+        id: check_existing
+        run: |
+          # Check if there's already an open template update issue
+          ISSUE_COUNT=$(gh issue list --state open --label "template-update" --label "automation" --json number | jq length)
+          echo "existing_issues=$ISSUE_COUNT" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get current template version from metadata
+        id: get_versions
+        run: |
+          # Fetch current version from centralized metadata
+          CURRENT_VERSION=$(curl -s https://raw.githubusercontent.com/DrozmotiX/ioBroker-Copilot-Instructions/main/config/metadata.json | jq -r '.template.version')
+          echo "current_version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          
+          # Get local version if copilot-instructions.md exists
+          if [ -f ".github/copilot-instructions.md" ]; then
+            LOCAL_VERSION=$(grep "^\*\*Version:\*\*" .github/copilot-instructions.md | sed 's/\*\*Version:\*\* //' | tr -d '\r')
+            echo "local_version=$LOCAL_VERSION" >> $GITHUB_OUTPUT
+            echo "has_local_file=true" >> $GITHUB_OUTPUT
+          else
+            echo "local_version=none" >> $GITHUB_OUTPUT
+            echo "has_local_file=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Determine action needed
+        id: determine_action
+        run: |
+          if [ "${{ steps.get_versions.outputs.has_local_file }}" = "false" ]; then
+            echo "action=initial_setup" >> $GITHUB_OUTPUT
+            echo "needs_issue=true" >> $GITHUB_OUTPUT
+          elif [ "${{ steps.get_versions.outputs.local_version }}" != "${{ steps.get_versions.outputs.current_version }}" ]; then
+            echo "action=update" >> $GITHUB_OUTPUT  
+            echo "needs_issue=true" >> $GITHUB_OUTPUT
+          else
+            echo "action=none" >> $GITHUB_OUTPUT
+            echo "needs_issue=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create initial setup issue
+        if: steps.determine_action.outputs.action == 'initial_setup' && steps.check_existing.outputs.existing_issues == '0'
+        run: |
+          # Create issue for initial Copilot setup using centralized template
+          gh issue create \
+            --title "🤖 Setup ioBroker GitHub Copilot Instructions" \
+            --label "copilot-setup,automation" \
+            --assignee "copilot" \
+            --body "$(curl -s https://raw.githubusercontent.com/DrozmotiX/ioBroker-Copilot-Instructions/main/templates/initial-setup-automation.md)"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create template update issue
+        if: steps.determine_action.outputs.action == 'update' && steps.check_existing.outputs.existing_issues == '0'
+        run: |
+          cat << 'EOF' | gh issue create \
+            --title "📋 Update GitHub Copilot Template (v${{ steps.get_versions.outputs.current_version }})" \
+            --label "template-update,automation" \
+            --assignee "copilot" \
+            --body-file -
+          ---
+          name: Template Update Required
+          about: Automated template version update for GitHub Copilot instructions
+          title: "📋 Update GitHub Copilot Template"
+          labels: ["template-update", "automation"]
+          assignees: ["copilot"]
+          ---
+
+          # 📋 GitHub Copilot Template Update Required
+
+          **Current Template Version**: ${{ steps.get_versions.outputs.current_version }}  
+          **Local Version**: ${{ steps.get_versions.outputs.local_version }}
+
+          ## 🤖 GitHub Copilot Instructions
+
+          Please update the GitHub Copilot instructions template in this repository:
+
+          ### Step 1: Fetch and Update Template
+          
+          Update `.github/copilot-instructions.md` with the latest template:
+
+          ```bash
+          # Download latest template
+          curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/DrozmotiX/ioBroker-Copilot-Instructions/main/template.md
+          
+          # Remove template comment block
+          sed -i '/^<!--$/,/^-->$/d' .github/copilot-instructions.md
+          ```
+
+          ### Step 2: Preserve Custom Sections
+          
+          **IMPORTANT**: Ensure all `[CUSTOMIZE]` sections contain adapter-specific content and are not overwritten with generic content. Review the file to ensure:
+
+          - [ ] Project-specific context is preserved
+          - [ ] Adapter-specific testing patterns are maintained  
+          - [ ] Custom configuration examples remain intact
+          - [ ] Version is updated to **${{ steps.get_versions.outputs.current_version }}**
+
+          ### Step 3: Validation
+
+          After updating, verify:
+          - [ ] `.github/copilot-instructions.md` contains version **${{ steps.get_versions.outputs.current_version }}**
+          - [ ] All `[CUSTOMIZE]` sections have adapter-specific content
+          - [ ] No duplicate content between custom and template sections
+          - [ ] Template source reference is correct
+
+          ---
+
+          **Automation**: This issue was created automatically by the template version check workflow. The template source is managed centrally at https://github.com/DrozmotiX/ioBroker-Copilot-Instructions
+
+          **Template Reference**: https://raw.githubusercontent.com/DrozmotiX/ioBroker-Copilot-Instructions/main/template.md  
+          **Metadata Reference**: https://raw.githubusercontent.com/DrozmotiX/ioBroker-Copilot-Instructions/main/config/metadata.json
+          EOF
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log result
+        run: |
+          echo "Template Version Check Complete"
+          echo "Current Version: ${{ steps.get_versions.outputs.current_version }}"
+          echo "Local Version: ${{ steps.get_versions.outputs.local_version }}"
+          echo "Action Determined: ${{ steps.determine_action.outputs.action }}"
+          echo "Existing Issues: ${{ steps.check_existing.outputs.existing_issues }}"

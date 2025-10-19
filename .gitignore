@@ -86,3 +86,6 @@ $RECYCLE.BIN/
 
 # IDE
 .idea
+
+#ignore .commitinfo created by ioBroker release script
+.commitinfo

@@ -11,6 +11,7 @@
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.firetv",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "fire-tv",
     "firetv",
     "fire tv stick",

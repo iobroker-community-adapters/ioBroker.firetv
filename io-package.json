@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "firetv",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "news": {
+      "2.2.0": {
+        "en": "Adapter requires node.js >= 20 now.\nAdapter requires admin >= 7.7.22 now\nAdapter requires js-controller >= 6.0.11 now\nDependencies have been updated",
+        "de": "Adapter benötigt jetzt node.js >= 20.\nAdapter benötigt admin >= 7.7.22 jetzt\nAdapter benötigt jetzt js-controller >= 6.0.11\nAbhängigkeiten wurden aktualisiert",
+        "ru": "Адаптер требует node.js >= 20 сейчас.\nАдаптер требует администратора >= 7.7.22\nАдаптер требует js-контроллер >= 6.0.11\nЗависимости были обновлены",
+        "pt": "O adaptador requer gnod.js >= 20 agora.\nAdaptador requer admin >= 7.7.22 agora\nAdaptador requer js-controlador >= 6.0.11 agora\nAs dependências foram atualizadas",
+        "nl": "Voor de adapter zijn node.js < 20 nu nodig.\nAdapter vereist admin < 7.7.22 nu\nAdapter vereist js-controller > 6,0.11 nu\nAfhankelijkheden zijn bijgewerkt",
+        "fr": "Adaptateur nécessite node.js >= 20 maintenant.\nAdaptateur nécessite admin >= 7.7.22 maintenant\nAdaptateur nécessite js-controller >= 6.0.11 maintenant\nLes dépendances ont été actualisées",
+        "it": "Adattatore richiede node.js >= 20 ora.\nAdattatore richiede admin >= 7.7.22 ora\nAdattatore richiede js-controller >= 6.0.11 ora\nLe dipendenze sono state aggiornate",
+        "es": "Adaptador requiere node.js >= 20 ahora.\nEl adaptador requiere admin= 7.7.22 ahora\nAdaptador requiere js-controller >= 6.0.11\nSe han actualizado las dependencias",
+        "pl": "Adapter wymaga node.js > = 20 teraz.\nAdapter wymaga admin > = 7.7.22\nAdapter wymaga sterownika js- > = 6.0.11\nZaktualizowano zależności",
+        "uk": "Адаптер вимагає node.js >= 20 тепер.\nАдаптер вимагає адмін >= 7.7.22 тепер\nАдаптер вимагає js-controller >=6.0.11 тепер\nЗалежність було оновлено",
+        "zh-cn": "适配器需要节点.js >= 20 现在.\n适任者需要管理员 \\ 7.7.22 现在\n适配器需要js控制器 现在6.0.11\n依赖关系已更新"
+      },
       "2.1.0": {
         "en": "Adapter requires node.js 18 and js-controller >= 5 now\nDependencies have been updated",
         "de": "Adapter benötigt node.js 18 und js-controller >= 5 jetzt\nAbhängigkeiten wurden aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "aktualizacja podstawowego testowania plików pakietów (Apollon77)",
         "uk": "оновити тестування основного пакетного файлу (Apollon77)",
         "zh-cn": "更新基本包文件测试（Apollon77）"
-      },
-      "0.0.31": {
-        "en": "node 0.12 removed from testing",
-        "de": "node 0.12 auf testing entfernt",
-        "ru": "узел 0.12 снят с тестирования",
-        "pt": "nó 0.12 removido do teste",
-        "nl": "node 0.12 verwijderd uit testen",
-        "fr": "nœud 0.12 supprimé des tests",
-        "it": "nodo 0.12 rimosso dal test",
-        "es": "nodo 0.12 eliminado de las pruebas",
-        "pl": "węzeł 0.12 usunięty z testowania",
-        "uk": "вузол 0.12 видалено з тестування",
-        "zh-cn": "从测试中删除节点 0.12"
       }
     },
     "titleLang": {

@@ -35,8 +35,7 @@ Alternatively, you can use *adbLink*
 <!-- 
     ### **WORK IN PROGRESS** 
 -->
-
-### **WORK IN PROGRESS**
+### 2.2.0 (2026-03-07)
 - (iobroker-bot) Adapter requires node.js >= 20 now.
 - (copilot) Adapter requires admin >= 7.7.22 now
 - (copilot) Adapter requires js-controller >= 6.0.11 now

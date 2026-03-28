@@ -2,8 +2,8 @@
 
 const soef = require(`${__dirname}/lib/dontBeSoSoef`);
 const adb = require('adbkit');
-const path = require('path');
-const os = require('os');
+const path = require('node:path');
+const os = require('node:os');
 const Mdns = require('mdns-discovery');
 const adapterName = require('./package.json').name.split('.').pop();
 

@@ -43,7 +43,7 @@
     "@iobroker/testing": "^5.2.2",
     "@tsconfig/node14": "^14.1.8",
     "@types/node": "^24.12.2",
-    "globals": "^16.5.0",
+    "globals": "^17.5.0",
     "typescript": "~5.9.3"
   },
   "main": "firetv.js",

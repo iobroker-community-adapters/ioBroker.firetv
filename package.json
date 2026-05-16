@@ -44,7 +44,7 @@
     "@tsconfig/node14": "^14.1.8",
     "@types/node": "^24.12.3",
     "globals": "^16.5.0",
-    "typescript": "~5.9.3"
+    "typescript": "~6.0.3"
   },
   "main": "firetv.js",
   "files": [
